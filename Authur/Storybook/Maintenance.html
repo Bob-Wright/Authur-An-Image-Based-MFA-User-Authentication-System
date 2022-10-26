@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width">
+	<title>Maintenance</title>
+	<base href="./">
+	<meta name="description" content="includes modified content from various sources" />
+	<meta name="keywords" content="text, animation, javascript" />
+	<meta name="author" content="Bob Wright" />
+	<meta name="rating" content="general">
+	<meta name="robots" content="index, follow"/> 
+	<link rel="shortcut icon" href="./favicon.ico">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://syntheticreality.net/CSS/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="https://syntheticreality.net/CSS/mdb.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./CSS/storybookLanding.css" /> -->
+	<link rel="stylesheet" type="text/css" href="https://syntheticreality.net/CSS/Landing.css" />
+</head>
+<body>
+	<script src="https://syntheticreality.net/js/jquery.min.js"></script>
+	<script src="https://syntheticreality.net/js/gsap.js"></script>
+<script>
+$( window ).on( "load", function() {
+	console.info( "we are ready!" );
+    //'use strict';
+ var showVPDetails = 1;
+ var viewportWidth = $(window).width();
+ var viewportHeight = $(window).height();
+
+	var message = "Right-click disabled"; 
+	function clickIE() {if (document.all) {(message);return false;}} 
+	function clickNS(e) {if 
+	(document.layers||(document.getElementById&&!document.all)) { 
+	if (e.which==2||e.which==3) {(message);return false;}}} 
+	if (document.layers) 
+	{document.captureEvents(Event.MOUSEDOWN);document.onmousedown = clickNS;} 
+	else{document.onmouseup = clickNS;document.oncontextmenu = clickIE;} 
+	document.oncontextmenu = new Function("return false");
+
+// scale the images to fill the viewport and keep aspect
+$(window).resize(function() {
+
+ if(showVPDetails == 1) {
+  var viewportWidth = $(window).width();
+  var vpWidth = parseInt(viewportWidth);
+    var fontSize = '3vw';
+    if(vpWidth <= 840) { fontSize = '4vw' } else { fontSize = '1.5vw' };
+	$("body").append('<div id="viewport-size" title="Viewport Size and Aspect" style="display:block;color:#fff;background:#08F;position:fixed;top:0;left:0;font-size:' + fontSize + ';z-index:20;"></div>');
+  var viewportHeight = $(window).height();
+  var vpHeight = parseInt(viewportHeight);
+  var VPaspectRatio = viewportWidth / viewportHeight;
+	var VPaspectRounded = (Math.round(VPaspectRatio * 100)) / 100;
+	  // console.info("rounded VP aspect " + VPaspectRounded);
+	$("#viewport-size").html('<div class="dimensions">' + viewportWidth + ' &times; ' + viewportHeight + ' px &amp; w/h = ' + 		VPaspectRounded + ' </div>');
+ }
+
+	// Display the "matrix" screen
+	var ctx = c.getContext("2d");
+	// full screen canvas
+	c.height = vpHeight;
+	c.width = vpWidth;
+	//character set
+	var character = "0123456789@#$%^&?©ΓειάσουΚόσμε田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑مرحبابالعالمПрывітаннеСусветСәлемӘлемសួស្តី​ពិភពលោកಹಲೋ ವರ್ಲ್ಡ್안녕하세요월드ສະ​ບາຍ​ດີ​ຊາວ​ໂລກ";
+	//array of characters
+	character = character.split("");
+	var font_size = 26;
+	var columns = c.width/font_size; //number of columns for the rain
+	//an array of drops - one per column
+	var drops = [];
+	//x below is the x coordinate
+	//1 = y co-ordinate of the drop(same for every drop initially)
+	for(var x = 0; x < columns; x++) {
+	drops[x] = 1;}
+	//draw the characters
+	function draw(){
+		//Black BG for the canvas
+		//translucent BG to show trail
+		var opacity = 0.01;
+		if(Math.random() > 0.9) {
+		var opacity = 0.075};
+		ctx.fillStyle = "rgba(0, 0, 0, "+opacity+")";
+		ctx.fillRect(0, 0, c.width, c.height);
+		//	var color = (Math.floor(Math.random()*10));
+		//	if(color > 5) {ctx.fillStyle = "#F80";} else {ctx.fillstyle = "#0ff";}
+		ctx.fillStyle = "#fff"; // text
+			var color = (Math.floor(Math.random()*10));
+			if(color == 9) {ctx.fillStyle = "#0ff";}
+			if(color == 8) {ctx.fillStyle = "#8f0";}
+			if(color == 7) {ctx.fillStyle = "#a3d";}
+			if(color == 6) {ctx.fillStyle = "#e23";}
+			if(color == 5) {ctx.fillStyle = "#f90";}
+			if(color == 4) {ctx.fillStyle = "#ff1";}
+			if(color == 3) {ctx.fillStyle = "#29f";}
+			if(color == 2) {ctx.fillStyle = "#f0f";}
+			if(color == 1) {ctx.fillStyle = "#f50";}
+		ctx.font = font_size + "px arial";
+		//looping over drops
+		for(var i = 0; i < drops.length; i++){
+			//a random character to print
+			var text = character[Math.floor(Math.random()*character.length)];
+			//x = i*font_size, y = value of drops[i]*font_size
+			ctx.fillText(text, i*font_size, drops[i]*font_size);
+			//sending the drop back to the top randomly after it has crossed the screen
+			//adding a randomness to the reset to make the drops scattered on the Y axis
+			if(drops[i]*font_size > c.height && Math.random() > 0.75)
+				drops[i] = 0;
+			//incrementing Y coordinate
+			if(drops[i] > 6 && (Math.random() > 0.9)) {
+			drops[i] = drops[i] - 6;}
+			drops[i]++;
+		}
+	}
+	setInterval(draw, 80);
+}).trigger('resize');
+
+	
+
+    setTimeout(function () {$(".matrix").show(0);$("#back2Home").show(0);}, 0);
+	//var c = document.getElementById("myBody").style.cursor = "pointer";
+});
+</script>
+<!--#include file="./includes/browserupgrade.ssi" -->
+<!-- <main class="container-fluid main-container d-flex flex-column"> -->
+<main class="container-fluid main-container">
+	<!-- ++++++++++++++++++++ -->
+	<!-- display our content -->
+	<section class="matrix" title="Drop character screen like the matrix.">
+		<center><div style="margin-top: 5vw;font-size: 3vw;color:#fff;z-index:15;background: rgba(0,0,0,0)">Site Maintenance in Progress. Please try again later.</div></center>
+		<canvas id="c" height="100vh" width="100vw"></canvas>
+	</section>
+
+	<!-- +++++++++++++++++++++++ -->
+	<!-- Navigation  -->
+
+
+</main>
+<!-- =========================== -->
+</body>
+</html>

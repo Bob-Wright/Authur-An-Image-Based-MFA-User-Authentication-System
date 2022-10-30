@@ -1,1 +1,3 @@
-The Authur system uses files from several folders. The main entry is the Portal.php program in the Storybook folder.
+The Authur system uses files from several folders. The main entry is the Portal.php program in the Storybook folder and most of the registration and logon functions are contained within a number of subfolders
+code is in subfolders within Storybook.
+

@@ -1,3 +1,6 @@
-The Authur system uses files from several folders. The main entry is the Portal.php program in the Storybook folder and most of the registration and logon functions are contained within a number of subfolders
-code is in subfolders within Storybook.
+The Authur system uses files from several folders. The main entry is the Portal.php program in the Storybook folder
+and most of the registration and logon functions are contained within a number of subfolders within Storybook.
 
+The PortalPGP folder represents a NodeJS API we use to handle our PGP based PKC encrypt and decrypt functions.
+
+The Session2DB folder contains the database management code for our PHP SESSION management.

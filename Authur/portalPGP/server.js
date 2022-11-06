@@ -229,13 +229,18 @@ const checkPukeyexists = () => { // tests existence of the key record
  const keygenWebpage = () => { // function shows web page
   return new Promise(resolve => {
 // tell the user we created the key pair and jump to next URL
-	const top = fs.readFileSync("./public/sfTop.html");
-	const bottom = fs.readFileSync("./public/sfBottom.html");
 		console.log('A PGP Key File pair was saved at '+value);
-		valuestring = '<h3>A PGP Key File pair was saved at '+value+'</h3>';
-		resolve(res.send(top+valuestring+bottom));
-    });
-  }
+  		console.log('jumped to new url');
+ const fileName = 'sf.html'
+  var options = {
+    root: path.join(__dirname, 'public')
+  };
+  res.sendFile(fileName, options, function (err) {
+    if (err) next(err);
+    else resolve(console.log('Sent:', fileName));
+  });
+});
+}
 
 // --------------------------
 // perform the tasks

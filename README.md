@@ -1,7 +1,7 @@
 # Authur-User-Authentication-System
 A demo User Registration and logon system. Supports several logon methods.
 
-This is an article about the enrollment or registration componenet of our user authentication system.
+This is an article about the enrollment or registration componenet of our user authentication system. This code is in the repo.
 
 https://hackernoon.com/building-an-mfa-user-authentication-system-enrollment-component-code-using-images
 

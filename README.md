@@ -1,5 +1,5 @@
 # Authur-User-Authentication-System
-A demo User Registration and logon system. Supports several logon methods.
+A demo User Registration and logon system. Supports several logon methods including Username/Password, Magic Link, One Time password, and MFA.
 
 This is an article about the enrollment or registration componenet of our user authentication system. This code is in the repo.
 

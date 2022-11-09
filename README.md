@@ -9,4 +9,4 @@ This article also appeared here.
 
 https://medium.com/@itzbobwright/an-image-based-mfa-user-authentication-system-enrollment-component-code-313064d8cac5
 
-This is a partial upload. Most of the logon component is coded and functioning, and it is already in the repo. Conclusion article about the logon component to follow. Stay tuned.
+This is a partial upload. It presents a functioning User registration component for our User Authentication System. Most of the logon component is coded and functioning, and it is already in the repo. Conclusion article about the logon component to follow. Stay tuned.
